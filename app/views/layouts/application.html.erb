@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyBlog</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<!-- Классы navbar и navbar-default (базовые классы меню) -->
+<nav class="navbar navbar-default">
+  <div class="container">
+       <div class="row  ">         
+               <div class="collapse navbar-collapse " id="menu">
+                   <ul class="nav navbar-nav col-lg-10">
+                      <li>
+                            <%= link_to 'Все статьи', posts_path %>
+                       </li>
+                      <li >
+                        <%= link_to 'Все категории',categories_path %>
+                       </li>                       
+                   </ul>
+                   <div class="new-post col-lg-2">
+                     <%= link_to 'Новая статья', new_post_path, class: 'btn btn-primary ' %>
+                   </div>
+                    
+               </div>
+           </div>    
+  </div>
+
+</nav>
+
+	
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <% flash.each do |name, message| %>
+        <div class="alert alert-success">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+    <%= yield %>
+  </body>
+</html>

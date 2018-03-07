@@ -1,0 +1,54 @@
+<div class="container">
+	<h1><%= @post.title %></h1>
+
+	<%= link_to 'Изменить', edit_post_path(@post) , class: 'btn btn-primary'%>
+	<%= link_to 'Удалить', post_path(@post), method: :delete, data:{ confirm: 'Вы уверены?' } , class: 'btn btn-primary ' %>
+	<br>
+	<% if @post.category.present? %>
+		<%= link_to @post.category.name, @post.category %>
+	<% end %>
+	<p class="post-summary">
+		<%= image_tag @post.image.url(:large), class: 'img-show' if @post.image? %>
+		<%= @post.body.html_safe %>
+	</p>
+
+</div>
+<div class="container ">
+
+		<h2>Comments:</h2>
+		<% @post.comments.each do |comment| %>
+		  	<div class="comments">
+		  		<p>
+		    <strong>Commenter:</strong>
+		    <%= comment.name %>
+		  </p>
+		 
+		  <p>
+		    <strong>Comment:</strong>
+		    <%= comment.body %>
+		  </p>	
+		</div>
+		<% end %>		
+
+	
+</div>
+<div class="container">
+	
+
+
+	<h2>Add a comment:</h2>
+	<%= form_for([@post, @post.comments.build]) do |f| %>
+	  <p>
+	    <%= f.label :name %><br />
+	    <%= f.text_field :name, class:'form-control' %>
+	  </p>
+	  <p>
+	    <%= f.label :body %><br />
+	    <%= f.text_area :body, class:'form-control' %>
+	  </p>
+	  <p>
+	    <%= f.submit 'Создать коментарий' ,  class:'btn btn-primary btn-form' %>
+	  </p>
+	<% end %>	
+</div>
+

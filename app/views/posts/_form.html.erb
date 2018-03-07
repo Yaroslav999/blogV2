@@ -1,0 +1,44 @@
+<% if @post.errors.any? %>
+	<div class="alert alert-danger">
+		<h5><%= t('common.errors') %></h5>
+		<ul>
+			<% @post.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class="container">
+	<%= form_for @post, html:{multipart: true} do |f| %>
+		<div class="">
+			<%= f.label :title %>
+			<%= f.text_field :title, class:'form-control' %>
+		</div>
+
+		<div class="">
+			<%= f.label :summary %>
+			<%= f.text_area :summary, class:'form-control ' %>
+		</div>
+
+		<div class="">
+			<%= f.label :body %>
+			<%= f.trix_editor :body, class:'editor '%>
+		</div>
+		
+		<div class="">
+			<%= f.label :category_id %>
+			<%= f.collection_select :category_id, Category.order(:name), :id, :name, {include_blank:true}, class:'form-control ' %>
+		</div>
+		
+		<div class="">
+			<%= f.file_field :image %>
+		</div>
+	
+		<div class="">
+			<%= f.submit 'Сохранить',  class:'btn btn-primary btn-form'%>
+		</div>
+
+	<% end %>	
+</div>
+

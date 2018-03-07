@@ -1,0 +1,14 @@
+<div class="container">
+	<h1><%= @category.name %></h1>
+
+	<p><%= @category.description %></p>	
+</div>
+
+<section id="posts">
+	<div class="container">
+		<%= render @posts %>	
+		
+	</div>
+</section>
+
+<%= will_paginate @posts, renderer: 'BootstrapPaginationHelper::LinkRenderer' %>	

@@ -1,0 +1,32 @@
+<% if @category.errors.any? %>
+	<div class="alert alert-danger">
+		<h5><%= t('common.errors') %></h5>
+		<ul>
+			<% @category.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class="container">
+	<%= form_for @category do |f| %>
+		<div class="">
+			<%= f.label :name %>
+			<%= f.text_field :name, class:'form-control' %>
+		</div>
+
+		<div class="">
+			<%= f.label :description %>
+			<%= f.text_area :description, class:'form-control ' %>
+		</div>
+
+
+
+		<div class="">
+			<%= f.submit 'Сохранить',  class:'btn btn-primary btn-form'%>
+		</div>
+
+	<% end %>	
+</div>
+

@@ -1,0 +1,38 @@
+<div class="container">
+	<h1>Категории</h1>
+
+	<div class="buttons-panel ">
+		<%= link_to 'Новая категория', new_category_path, class: 'btn btn-info' %>
+	</div>	
+</div>
+
+
+<section>
+	<div class="container">
+		<table class="table" id="categories">
+			<thead >
+				<tr>
+					<th>#</th>
+					<th>Название</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @categories.each_with_index do |category, index| %>
+				<tr>
+					<td><%= index+1 %></td>
+					<td><%= category.name %></td>
+					<td>
+						<%= link_to 'Изменить', edit_category_path(category), class:"btn btn-primary" %>
+						<%= link_to 'Удалить', category_path(category), method: :delete, data: {confirm:'Вы уверены?'}, class:'btn btn-danger deleteAction' %>	
+					</td>
+					<td>
+						<span class="deleteAction"  id="deleteAction">Удалить</span>
+					</td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>		
+	</div>
+	
+</section>
